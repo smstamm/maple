@@ -1,30 +1,70 @@
-var app = angular.module('app', []);
+var app = angular.module('app', ['ng-fastclick']);
 
 app.controller('home-ctrl', ['$scope','$timeout', function($scope, $timeout){
 	//Alphabet array
 	$scope.grid = [];
 	$scope.timer = 60;
 	$scope.enteredWord = "";
+	$scope.foundWords = [];
+	$scope.score = 0;
+	$scope.gameOver = false;
+	var gridDict = {};
 	var stopped;
 
-	function validate(){
+	$scope.validate = function(){
+		if($scope.gameOver){
+			return false;
+		}
 		var url = "http://en.wiktionary.org/w/api.php?action=query&titles=" + $scope.enteredWord + "&format=json&callback=?";
+		var newDict = gridToDict($scope.grid);
+		//Check if the word can be constructed from the available letters
+		if(canBeAWord($scope.enteredWord, newDict)){
+			$.getJSON(url, function(data) {
+				for(prop in data.query.pages){
+					if(prop === "-1"){
+						//TODO: Figure something better than a console.log
+						console.log("NOPE, API SAID NO");
+						newDict = gridDict;
+					} else {
+						console.log("YEP, IT CHECKS OUT ON THE API");
+						$scope.foundWords.push($scope.enteredWord);
+						countScore($scope.enteredWord);
+						$scope.clear();
+						newDict = gridDict;
+					}
+				};
+			});
+		}
+	};
 
-		$.getJSON(url, function(data) {
-			for(prop in data.query.pages){
-				if(prop === "-1"){
-					console.log("NOPE")
-				} else {
-					console.log("ITS A WORD")
-				}
-			};
+	function canBeAWord(word, dict){
+		word = word.toUpperCase();
+		var letters = word.split('');
+		var bool = true;
+		letters.forEach(function(letter){
+			if(dict[letter] !== "undefined" && dict[letter] > 0){
+				dict[letter]--
+			} else {
+				bool = false;
+			}
 		});
+		console.log("YOUR WORD IS A WORD", bool);
+		return bool;
+	}
+
+	function countScore(word){
+		$scope.score += word.length;
 	}
 
 	$scope.countdown = function() {
     stopped = $timeout(function() {
-    	$scope.timer--;
-    	$scope.countdown();
+    	if($scope.timer == 0){
+    		$scope.gameOver = true;
+    	} else{
+    		$scope.timer--;
+    		$scope.countdown();
+    	}
+
     }, 1000);
   };
 
@@ -72,8 +112,27 @@ app.controller('home-ctrl', ['$scope','$timeout', function($scope, $timeout){
 		for(var i=1; i<= size;i++){
 			grid.push(new Row(size));
 		}
-
+		gridDict = gridToDict(grid);
 		return grid;
+	}
+
+	//Grid to dictionary function
+	function gridToDict(grid){
+		var dict = {};
+
+		grid.forEach(function(row){
+			row.forEach(function(cell){
+				//Check if there is a key for that letter already
+				if(dict[cell.letter] > 0){
+					//If there is, then increment the integer value
+					dict[cell.letter]++;
+				} else {
+					//If there isn't, we create that key, and set its value to 1
+					dict[cell.letter] = 1;
+				}
+			});
+		});
+		return dict;
 	}
 
 	$scope.renderGrid = function(dimension){
