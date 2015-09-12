@@ -16,10 +16,12 @@ app.controller('home-ctrl', ['$scope','$timeout', function($scope, $timeout){
 	$scope.stop = function(){
   	$timeout.cancel(stopped);
   	$scope.timer = 60;
+  	$scope.grid = [];
   };
 
   $scope.start = function(){
   	$scope.countdown();
+  	$scope.renderGrid(5);
   };
 
 	const ALPHABET = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U'
@@ -70,6 +72,4 @@ app.controller('home-ctrl', ['$scope','$timeout', function($scope, $timeout){
 		}
 
 	}
-
-	$scope.renderGrid(5);
 }]);
