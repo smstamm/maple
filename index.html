@@ -4,22 +4,34 @@
 	<script src="bower_components/angular/angular.js"></script>
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
 	<script src="app.js"></script>
+	<style>
+		.cell {
+			cursor: pointer;
+			border: 3px solid black;
+			border-radius: 5px;
+			display: inline;
+			text-align: center;
+			height: 60px;
+			font-size: 40px;
+		}
+		.cell:not(:first-child){
+			margin-left: 5px;
+		}
+		.cell:not(:last-child){
+			margin-right:5px;
+		}
+		.cell.highlighted{
+			background-color: red;
+		}
+	</style>
 </head>
 <body ng-controller="home-ctrl">
 	<div class="container">
-		<div class="jumbotron">
-			<h1>maple</h1>
-			<p>Welcome to the landing site for the maple project. Come back to check our progress!
-			</p>
-			<h3>Team Members</h3>
-			<ul>
-				<li ng-repeat="member in teamMembers">
-					<h2>{{member.name}}</h2>
-					<p>{{member.hometown}}</p>
-					<img src="{{member.avatar}}" class="img-circle">
-				</li>
+		<article id="grid">
+			<ul class="row" ng-repeat="row in grid">
+				<li class="cell col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="cell in row" ng-class="{ 'highlighted': cell.highlighted }" ng-click="highlight(cell)">{{cell.letter}}</li>
 			</ul>
-		</div>
+		</article>
 	</div>
 </body>
 </html>
