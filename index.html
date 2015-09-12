@@ -14,7 +14,9 @@
 			<h3>Team Members</h3>
 			<ul>
 				<li ng-repeat="member in teamMembers">
-					<p>{{member.name}}</p>
+					<h2>{{member.name}}</h2>
+					<p>{{member.hometown}}</p>
+					<img src="{{member.avatar}}" class="img-circle">
 				</li>
 			</ul>
 		</div>
