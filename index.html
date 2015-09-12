@@ -1,16 +1,22 @@
-<!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
 	<title>Maple</title>
-	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
-
+	<script src="app.js"></script>
 </head>
-<body>
+<body ng-controller="home-ctrl">
 	<div class="container">
 		<div class="jumbotron">
 			<h1>maple</h1>
-			<p>this is a test</p>
+			<p>Welcome to the landing site for the maple project. Come back to check our progress!
+			</p>
+			<h3>Team Members</h3>
+			<ul>
+				<li ng-repeat="member in teamMembers">
+					<p>{{member.name}}</p>
+				</li>
+			</ul>
 		</div>
 	</div>
 </body>
