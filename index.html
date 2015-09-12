@@ -8,18 +8,55 @@
 <body ng-controller="home-ctrl">
 	<div class="container">
 		<div class="jumbotron">
-			<h1>maple</h1>
-			<p>Welcome to the landing site for the maple project. Come back to check our progress!
-			</p>
-			<h3>Team Members</h3>
-			<ul>
-				<li ng-repeat="member in teamMembers">
-					<h2>{{member.name}}</h2>
-					<p>{{member.hometown}}</p>
-					<img src="{{member.avatar}}" class="img-circle">
-				</li>
-			</ul>
+			<h1>Maple</h1>
+			<p>How to play.....</p>			
 		</div>
+
+
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+
+<p>name and points goes here</p>
+
+
+		  </div>
+		  <div class="panel-body">
+		    <div class="row">
+			  <div class="col-md-8">grid goes here
+
+			  </div>
+			  <div class="col-md-4">list goes here</div>
+			</div>
+			  <div class="col-md-12">
+
+				<form class="form-inline">
+				  <div class="form-group">
+				    <label for="exampleInputName2">Words</label>
+				    <input type="text" class="form-control" id="enteredWord" placeholder="Words">
+				  </div>
+				  <button type="submit" class="btn btn-primary">Submit</button>
+				  <button type="clear" class="btn btn-primary">Clear</button>
+
+				</form>
+
+
+			  </div>
+			</div>
+
+		  </div>
+		  <div class="panel-footer">
+		  <div>
+		  	<label>..Timer goes here..</label>
+		  	<button class="btn btn-default" type="jumble">Jumble</button>
+
+		  </div>
+
+
+
+		  </div>
+		  </div>
+		</div>
+
 	</div>
 </body>
 </html>

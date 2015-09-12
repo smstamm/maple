@@ -28,4 +28,6 @@ app.controller('home-ctrl', ['$scope', function($scope){
 			avatar: "https://avatars1.githubusercontent.com/u/3272723?v=3&s=400"
 		}
 	]
+
+
 }]);
