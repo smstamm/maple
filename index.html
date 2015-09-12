@@ -22,6 +22,7 @@
 		}
 		.cell.highlighted{
 			background-color: red;
+			cursor: not-allowed;
 		}
 		#timer{
 			font-size: 30px;
@@ -60,7 +61,7 @@
 
 					<form class="form-inline">
 						<div class="form-group">
-							<input type="text" class="form-control" id="enteredWord" placeholder="Word">
+							<input type="text" class="form-control" ng-model="enteredWord">
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>
 						<button type="clear" class="btn btn-primary">Clear</button>

@@ -4,6 +4,7 @@ app.controller('home-ctrl', ['$scope','$timeout', function($scope, $timeout){
 	//Alphabet array
 	$scope.grid = [];
 	$scope.timer = 60;
+	$scope.enteredWord = "";
 	var stopped;
 
 	$scope.countdown = function() {
@@ -67,9 +68,7 @@ app.controller('home-ctrl', ['$scope','$timeout', function($scope, $timeout){
 	$scope.highlight = function(cell){
 		if(!cell.highlighted){
 			cell.highlighted = true;
-		} else {
-			cell.highlighted = false;
+			$scope.enteredWord += cell.letter;
 		}
-
 	}
 }]);
