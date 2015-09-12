@@ -32,6 +32,7 @@ app.controller('home-ctrl', ['$scope','$timeout', function($scope, $timeout){
   	$timeout.cancel(stopped);
   	$scope.timer = 60;
   	$scope.grid = [];
+  	$scope.clear();
   };
 
   $scope.start = function(){
@@ -84,5 +85,23 @@ app.controller('home-ctrl', ['$scope','$timeout', function($scope, $timeout){
 			cell.highlighted = true;
 			$scope.enteredWord += cell.letter;
 		}
-	}
+	};
+
+	$scope.clearHighlight = function(cell) {
+		if(cell.highlighted) {
+			cell.highlighted = false;
+		};
+	};
+
+// Clears word in entered word field and clears highlighting
+	$scope.clear = function() {
+		console.log("I was called!")
+		$scope.enteredWord = "";
+		$scope.grid.forEach(function(row){
+			row.forEach(function(cel){
+				$scope.clearHighlight(cel);
+			});
+		});
+	};
+
 }]);
