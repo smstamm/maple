@@ -2,8 +2,10 @@
 <head>
 	<title>Maple</title>
 	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
 	<script src="app.js"></script>
+
 	<style>
 		.cell {
 			cursor: pointer;
@@ -63,7 +65,7 @@
 						<div class="form-group">
 							<input type="text" class="form-control" ng-model="enteredWord">
 						</div>
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="submit" class="btn btn-primary" ng-click="submit()">Submit</button>
 						<button type="clear" class="btn btn-primary">Clear</button>
 
 					</form>

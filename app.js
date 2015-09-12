@@ -7,6 +7,24 @@ app.controller('home-ctrl', ['$scope','$timeout', function($scope, $timeout){
 	$scope.enteredWord = "";
 	var stopped;
 
+	$scope.submit = function(){
+
+	}
+
+	function validate(){
+		var url = "http://en.wiktionary.org/w/api.php?action=query&titles=" + $scope.enteredWord + "&format=json&callback=?";
+
+		$.getJSON(url, function(data) {
+			for(prop in data.query.pages){
+				if(prop === "-1"){
+					console.log("NOPE")
+				} else {
+					console.log("ITS A WORD")
+				}
+			};
+		});
+	}
+
 	$scope.countdown = function() {
     stopped = $timeout(function() {
     	$scope.timer--;
