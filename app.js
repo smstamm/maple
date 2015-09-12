@@ -7,10 +7,6 @@ app.controller('home-ctrl', ['$scope','$timeout', function($scope, $timeout){
 	$scope.enteredWord = "";
 	var stopped;
 
-	$scope.submit = function(){
-
-	}
-
 	function validate(){
 		var url = "http://en.wiktionary.org/w/api.php?action=query&titles=" + $scope.enteredWord + "&format=json&callback=?";
 
