@@ -26,7 +26,6 @@ app.controller('home-ctrl', ['$scope', function($scope){
 		for(var i=1;i <= length; i++){
 			row.push(new Cell());
 		}
-
 		return row;
 	}
 

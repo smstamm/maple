@@ -27,11 +27,49 @@
 </head>
 <body ng-controller="home-ctrl">
 	<div class="container">
-		<article id="grid">
-			<ul class="row" ng-repeat="row in grid">
-				<li class="cell col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="cell in row" ng-class="{ 'highlighted': cell.highlighted }" ng-click="highlight(cell)">{{cell.letter}}</li>
-			</ul>
-		</article>
+		<div class="jumbotron">
+			<h1>Maple</h1>
+			<p>How to play.....</p>
+		</div>
+
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p>name and points goes here</p>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-8">
+						<article id="grid">
+							<ul class="row" ng-repeat="row in grid">
+								<li class="cell col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="cell in row" ng-class="{ 'highlighted': cell.highlighted }" ng-click="highlight(cell)">{{cell.letter}}</li>
+							</ul>
+						</article>
+					</div>
+					<div class="col-md-4">list goes here</div>
+				</div>
+				<div class="col-md-12">
+
+					<form class="form-inline">
+						<div class="form-group">
+							<label for="exampleInputName2">Words</label>
+							<input type="text" class="form-control" id="enteredWord" placeholder="Words">
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="clear" class="btn btn-primary">Clear</button>
+
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<div>
+				<label>..Timer goes here..</label>
+				<button class="btn btn-default" type="jumble">Jumble</button>
+			</div>
+		</div>
 	</div>
+</div>
+</div>
 </body>
 </html>
