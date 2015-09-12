@@ -1,8 +1,28 @@
 var app = angular.module('app', []);
 
-app.controller('home-ctrl', ['$scope', function($scope){
+app.controller('home-ctrl', ['$scope','$timeout', function($scope, $timeout){
 	//Alphabet array
 	$scope.grid = [];
+	$scope.timer = 60;
+	var stopped;
+
+	$scope.countdown = function() {
+    stopped = $timeout(function() {
+    	$scope.timer--;
+    	$scope.countdown();
+    }, 1000);
+  };
+
+	$scope.stop = function(){
+  	$timeout.cancel(stopped);
+  	$scope.timer = 60;
+  	$scope.grid = [];
+  };
+
+  $scope.start = function(){
+  	$scope.countdown();
+  	$scope.renderGrid(5);
+  };
 
 	const ALPHABET = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U'
 , 'V', 'W', 'X', 'Y', 'Z'];
@@ -52,6 +72,4 @@ app.controller('home-ctrl', ['$scope', function($scope){
 		}
 
 	}
-
-	$scope.renderGrid(5);
 }]);

@@ -23,6 +23,12 @@
 		.cell.highlighted{
 			background-color: red;
 		}
+		#timer{
+			font-size: 30px;
+		}
+		#start, #stop{
+			margin-bottom: 10px;
+		}
 	</style>
 </head>
 <body ng-controller="home-ctrl">
@@ -35,7 +41,9 @@
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<p>name and points goes here</p>
+				<button class="btn btn-success" id="start" ng-click="start()" ng-show="timer == 60">START</button>
+				<button class="btn btn-danger" id="stop" ng-click="stop()" ng-show="timer < 60">STOP</button>
+				<label id="timer">{{':'+timer}}</label>
 			</div>
 			<div class="panel-body">
 				<div class="row">
@@ -52,8 +60,7 @@
 
 					<form class="form-inline">
 						<div class="form-group">
-							<label for="exampleInputName2">Words</label>
-							<input type="text" class="form-control" id="enteredWord" placeholder="Words">
+							<input type="text" class="form-control" id="enteredWord" placeholder="Word">
 						</div>
 						<button type="submit" class="btn btn-primary">Submit</button>
 						<button type="clear" class="btn btn-primary">Clear</button>
@@ -64,7 +71,6 @@
 		</div>
 		<div class="panel-footer">
 			<div>
-				<label>..Timer goes here..</label>
 				<button class="btn btn-default" type="jumble">Jumble</button>
 			</div>
 		</div>
