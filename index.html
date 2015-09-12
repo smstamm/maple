@@ -2,11 +2,15 @@
 <head>
 	<title>Maple</title>
 	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/ng-fastclick/dist/index.min.js"></script>
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
 	<script src="app.js"></script>
 
 	<style>
+		.found-word {
+			font-size: 30px;
+		}
 		.cell {
 			cursor: pointer;
 			border: 3px solid black;
@@ -26,8 +30,11 @@
 			background-color: red;
 			cursor: not-allowed;
 		}
-		#timer{
+		#timer, #score{
 			font-size: 30px;
+		}
+		#score{
+			float: right;
 		}
 		#start, #stop{
 			margin-bottom: 10px;
@@ -37,8 +44,11 @@
 <body ng-controller="home-ctrl">
 	<div class="container">
 		<div class="jumbotron">
-			<h1>Maple</h1>
-			<p>How to play.....</p>
+			<h1>Maple Twist</h1>
+			<p>
+				Welcome to the new hotness in word scramble tech!
+				Click the letters or type them in the text box and create words from the available grid.
+			</p>
 		</div>
 
 
@@ -47,8 +57,9 @@
 				<button class="btn btn-success" id="start" ng-click="start()" ng-show="timer == 60">START</button>
 				<button class="btn btn-danger" id="stop" ng-click="stop()" ng-show="timer < 60">STOP</button>
 				<label id="timer">{{':'+timer}}</label>
+				<label id="score">{{score}}</label>
 			</div>
-			<div class="panel-body">
+			<div class="panel-body" ng-show="timer < 60">
 				<div class="row">
 					<div class="col-md-8">
 						<article id="grid">
@@ -57,24 +68,23 @@
 							</ul>
 						</article>
 					</div>
-					<div class="col-md-4">list goes here</div>
+					<div class="col-md-4">
+						<h3>FOUND</h3>
+						<ul>
+							<li class="found-word" ng-repeat="word in foundWords">{{word}}</li>
+						</ul>
+					</div>
 				</div>
 				<div class="col-md-12">
-
 					<form class="form-inline">
 						<div class="form-group">
 							<input type="text" class="form-control" ng-model="enteredWord">
 						</div>
-						<button type="submit" class="btn btn-primary" ng-click="validate()">Submit</button>
+						<button type="submit" class="btn btn-success" ng-click="validate()">Submit</button>
 						<button type="clear" class="btn btn-primary" ng-click="clear()">Clear</button>
-
+						<button class="btn btn-warning" type="jumble" style="display:none">Jumble</button>
 					</form>
 				</div>
-			</div>
-		</div>
-		<div class="panel-footer">
-			<div>
-				<button class="btn btn-default" type="jumble">Jumble</button>
 			</div>
 		</div>
 	</div>
