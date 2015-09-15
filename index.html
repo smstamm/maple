@@ -61,7 +61,7 @@
 			</div>
 			<div class="panel-body" ng-show="timer < 60">
 				<div class="row">
-					<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+					<div class="col-md-8">
 						<article id="grid">
 							<ul class="row" ng-repeat="row in grid">
 								<li class="cell col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="cell in row" ng-class="{ 'highlighted': cell.highlighted }" ng-click="highlight(cell)">{{cell.letter}}</li>
